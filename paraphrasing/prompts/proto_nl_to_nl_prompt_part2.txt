@@ -1,0 +1,43 @@
+I am giving some questions. Combine them into one question keeping the meaning.
+
+Sentences: - Which rocket engine cycles are used by the RD-108MM bipropellant rocket engine?
+- Which rocket engine cycles are used by the M-1 bipropellant rocket engine?
+- Which rocket engine cycles are used by the RD-103MM bipropellant rocket engine?
+
+Question: Which rocket engine cycles are used by the RD-108MM, M-1, and RD-103M bipropellant rocket engines?
+[END]
+
+Sentences: - What is the latest date a musical artist started their career?
+- What is the latest date an organization changed its name?
+- What is the latest date an interview was conducted?
+
+Question: What is the latest date on which a musical artist started their career, an organization changed its name, and an interview was conducted?
+[END]
+
+Sentences: - Which lighthouse became non-operational the earliest?
+
+Question: Which lighthouse became non-operational the earliest?
+[END]
+
+Sentences: - What is the unit of specific energy with the highest amount of energy?
+- What are the units of specific energy in the International System of Units?
+
+Question: What is the unit of specific energy with the highest amount of energy in the International System of Units?
+[END]
+
+Sentences: - What is the lowest amount of CO2 emission?
+- What are the CO2 emissions not caused by commercial activities in the Comté de York region?
+
+Question: What is the lowest amount of CO2 emission not caused by commercial activities in the Comté de York region?
+[END]
+
+Sentences: - Which football player transfers involved selling a player to Club Atlético Peñarol?
+- Which football player transfers involved Guillermo Varela moving between teams?
+- Which football player transfers involved the purchasing team paying in Anglická libra?
+
+Question: Which football player transfers involved Guillermo Varela moving between teams, the purchasing team paying in Anglická libra, and selling a player to Club Atlético Peñarol?
+[END]
+
+Sentences: [[QUERY]]
+
+Question:

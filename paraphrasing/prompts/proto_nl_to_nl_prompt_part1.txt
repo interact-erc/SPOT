@@ -1,0 +1,45 @@
+I am giving you a sentence. You give a simplified question keeping the meaning.
+
+Sentence: list all rocket engine cycle that use this cycle. bipropellant rocket engine which is RD-108MM
+
+Question: Which rocket engine cycles are used by the RD-108MM bipropellant rocket engine?
+[END]
+
+Sentence: list all market size that is the minimum of number
+
+Question: What is the smallest market size?
+[END]
+
+Sentence: list all broadcast artist that are in broadcast content that was produced date which is greater than 1975-01-26
+
+Question: Who is the broadcast artist in broadcast produced after 1975-01-26?
+[END]
+
+Sentence: list all lighthouse that became non-operational on the minimum of date
+
+Question: Which lighthouse became non-operational the earliest?
+[END]
+
+Sentence: list all conducting tenure that started on the minimum of date in which the was inducted into the Hall of Fame baseball player
+
+Question: What is the earliest conducting tenure in which a baseball player was inducted into the Hall of Fame?
+[END]
+
+Sentence: list the maximum of date on which started their career the musical artist
+
+Question: What is the latest date a musical artist started their career?
+[END]
+
+Sentence: list the minimum of number with a longest span of bridge that is located in location which is Kiev
+
+Question: What is the smallest bridge with the longest span in Kiev?
+[END]
+
+Sentence: list all basketball division that is part of basketball conference that is part of sports association which is NBA
+
+Question: Which basketball division is part of a conference of the NBA?
+[END]
+
+Sentence: [[QUERY]]
+
+Question:

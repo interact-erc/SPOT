@@ -1,0 +1,12 @@
+# Task
+Here is a list of sentences and 3 paraphrasis for each. Words are changed and synonyms are used creatively, while maintaining the original meaning accurately. The exact attribute or property requested is specified. Each piece of information, when there are more than one, is included. All relational meanings are preserved.
+
+# Sentence: list the participants of Meeting with the minimum duration that were held in Room with Location Headquarter that hosted a Meeting with date 05/06/2012
+AND the target Meeting discussed Argument that is company growth
+# Paraphrasis: 1) Who were the participants in the shortest meeting about company growth held in a room at the headquarter that also hosted a meeting on the 5th of June 2012
+2) Who were the participants involved in the shortest company growth meeting, which took place in the same room at the headquarters that hosted another meeting on June 5, 2012?
+3) Can you identify the participants of the briefest company growth meeting held in a room at the headquarters, which also hosted a meeting on June 5th, 2012?
+[END]
+
+# Sentence: [[QUERY]]
+# Paraphrasis:

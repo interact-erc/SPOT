@@ -254,90 +254,93 @@ class CypherGraphGrounder:
                     nodes_id_to_ground += nodes_id_to_ground
 
                 for ntg, t_r_a in zip(nodes_id_to_ground, to_return_attr):
-                    ntg_grounded = True
-                    graph_tg = copy.deepcopy(graph)
+                    try:
+                        ntg_grounded = True
+                        graph_tg = copy.deepcopy(graph)
 
-                    graph_tg.return_attribute = t_r_a
+                        graph_tg.return_attribute = t_r_a
 
-                    res = random.choice(results)
-                    for node_id in ntg:
-                        node = graph_tg.nodes[node_id]
+                        res = random.choice(results)
+                        for node_id in ntg:
+                            node = graph_tg.nodes[node_id]
 
-                        if node.is_answer_node:
-                            if node.modifier:
-                                x0_property, x_ent, grnd, x0_datatype = (
-                                    self._pick_modifier_property(
-                                        res["x0"], node.modifier
+                            if node.is_answer_node:
+                                if node.modifier:
+                                    x0_property, x_ent, grnd, x0_datatype = (
+                                        self._pick_modifier_property(
+                                            res["x0"], node.modifier
+                                        )
                                     )
+                                    ntg_grounded = ntg_grounded and grnd
+                                    graph.nodes[0].datatype = x0_datatype
+                                else:
+                                    x0_property, x_ent = self._pick_random_property(
+                                        res["x0"]
+                                    )
+                                node.grounded_entity = x_ent
+                                node.attribute = x0_property
+                            else:
+                                if node.modifier:
+                                    x_prop, x_ent, grnd, x_datatype = (
+                                        self._pick_modifier_property(
+                                            res[f"x{node.id}"], node.modifier
+                                        )
+                                    )
+                                    if node.modifier.startswith("count") and len(
+                                        node.modifier
+                                    ) > len("count"):
+                                        x_ent = res[f"z{node.id}"]
+                                    ntg_grounded = ntg_grounded and grnd
+                                    node.datatype = x_datatype
+                                    if node.modifier[-1] == "<" or node.modifier[-1] == ">":
+                                        try:
+                                            x_ent = int(x_ent)
+                                            if node.modifier[-1] == "<":
+                                                x_ent = x_ent + 1
+                                            else:
+                                                x_ent = x_ent - 1
+                                            x_ent = str(x_ent)
+                                        except:
+                                            pass
+                                else:
+                                    x_prop, x_ent = self._pick_random_property(
+                                        res[f"x{node.id}"]
+                                    )
+                                node.grounded_entity = x_ent
+                                node.attribute = x_prop
+
+                        if 0 not in ntg:
+                            node = graph_tg.nodes[0]
+                            if node.modifier and not node.modifier.startswith("count"):
+                                x0_property, _, grnd, x0_datatype = (
+                                    self._pick_modifier_property(res["x0"], node.modifier)
                                 )
                                 ntg_grounded = ntg_grounded and grnd
                                 graph.nodes[0].datatype = x0_datatype
+                                node.attribute = x0_property
+
+                        # If needs to return property choose it here. Property must not be the same as grounded attribute
+                        if t_r_a:
+                            to_exclude = []
+                            if graph_tg.nodes[0].attribute is not None:
+                                if graph_tg.nodes[0].modifier not in (
+                                    "count",
+                                    "max",
+                                    "min",
+                                ):
+                                    to_exclude = [graph_tg.nodes[0].attribute]
+                            if len(res["x0"].keys()) > len(to_exclude):
+                                x0_property, _ = self._pick_random_property(
+                                    res["x0"], exclude=to_exclude
+                                )
+                                graph_tg.return_property = x0_property
                             else:
-                                x0_property, x_ent = self._pick_random_property(
-                                    res["x0"]
-                                )
-                            node.grounded_entity = x_ent
-                            node.attribute = x0_property
-                        else:
-                            if node.modifier:
-                                x_prop, x_ent, grnd, x_datatype = (
-                                    self._pick_modifier_property(
-                                        res[f"x{node.id}"], node.modifier
-                                    )
-                                )
-                                if node.modifier.startswith("count") and len(
-                                    node.modifier
-                                ) > len("count"):
-                                    x_ent = res[f"z{node.id}"]
-                                ntg_grounded = ntg_grounded and grnd
-                                node.datatype = x_datatype
-                                if node.modifier[-1] == "<" or node.modifier[-1] == ">":
-                                    try:
-                                        x_ent = int(x_ent)
-                                        if node.modifier[-1] == "<":
-                                            x_ent = x_ent + 1
-                                        else:
-                                            x_ent = x_ent - 1
-                                        x_ent = str(x_ent)
-                                    except:
-                                        pass
-                            else:
-                                x_prop, x_ent = self._pick_random_property(
-                                    res[f"x{node.id}"]
-                                )
-                            node.grounded_entity = x_ent
-                            node.attribute = x_prop
+                                ntg_grounded = False
 
-                    if 0 not in ntg:
-                        node = graph_tg.nodes[0]
-                        if node.modifier and not node.modifier.startswith("count"):
-                            x0_property, _, grnd, x0_datatype = (
-                                self._pick_modifier_property(res["x0"], node.modifier)
-                            )
-                            ntg_grounded = ntg_grounded and grnd
-                            graph.nodes[0].datatype = x0_datatype
-                            node.attribute = x0_property
-
-                    # If needs to return property choose it here. Property must not be the same as grounded attribute
-                    if t_r_a:
-                        to_exclude = []
-                        if graph_tg.nodes[0].attribute is not None:
-                            if graph_tg.nodes[0].modifier not in (
-                                "count",
-                                "max",
-                                "min",
-                            ):
-                                to_exclude = [graph_tg.nodes[0].attribute]
-                        if len(res["x0"].keys()) > len(to_exclude):
-                            x0_property, _ = self._pick_random_property(
-                                res["x0"], exclude=to_exclude
-                            )
-                            graph_tg.return_property = x0_property
-                        else:
-                            ntg_grounded = False
-
-                    if ntg_grounded:
-                        grounded = True
-                        grounded_graphs.append(graph_tg)
+                        if ntg_grounded:
+                            grounded = True
+                            grounded_graphs.append(graph_tg)
+                    except:
+                        continue
 
         return grounded_graphs, grounded

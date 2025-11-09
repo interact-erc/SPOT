@@ -1,3 +1,7 @@
+# **News!**
+We are releasing an improved version of the cypher generation with much better capabilities soon. Stay tuned!
+
+
 # SPOT
 
 This repository contains the code for the paper [SPOT: Zero-Shot Semantic Parsing Over Property Graphs](https://aclanthology.org/2025.findings-acl.524/) accepted at Findings of ACL 2025. 
